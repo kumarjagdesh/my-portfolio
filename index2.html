@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Frontend Developer</title>
+  <link rel="icon" type="image/jpeg" href="download.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+      color: white;
+      padding-top: 80px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+    .section {
+      margin-bottom: 60px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1s ease forwards;
+    }
+    .section:nth-of-type(1) { animation-delay: 0.2s; }
+    .section:nth-of-type(2) { animation-delay: 0.4s; }
+    .section:nth-of-type(3) { animation-delay: 0.6s; }
+    .section:nth-of-type(4) { animation-delay: 0.8s; }
+    .section:nth-of-type(5) { animation-delay: 1s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 1000;
+      padding: 10px 0;
+    }
+    .nav-container {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    .nav-links a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: #90caf9;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #90caf9;
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      text-align: center;
+    }
+    .hero img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(0,255,255,0.3);
+    }
+    .hero-text h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #4fc3f7, #90caf9, #4fc3f7);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 6s ease infinite;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0%; }
+      100% { background-position: 200%; }
+    }
+    .hero-text h2 {
+      font-size: 1.5rem;
+      color: #bbb;
+    }
+
+    /* About */
+    .about p {
+      color: #ccc;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    /* Skills */
+    .skills span {
+      background: rgba(255,255,255,0.1);
+      padding: 8px 16px;
+      margin: 6px;
+      border-radius: 9999px;
+      display: inline-block;
+      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .skills span:hover {
+      transform: scale(1.15);
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px #4fc3f7;
+    }
+
+    /* Projects */
+    .projects .card {
+      position: relative;
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 10px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      overflow: hidden;
+    }
+    .projects .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+    }
+    .projects .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+      animation: shimmer 6s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes shimmer {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .projects .links a {
+      color: #4fc3f7;
+      margin: 0 10px;
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .projects .links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 2px;
+      background: #4fc3f7;
+      transition: width 0.3s ease;
+    }
+    .projects .links a:hover::after {
+      width: 100%;
+    }
+
+    /* Contact */
+    .contact a {
+      margin: 0 10px;
+      color: #90caf9;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    .contact a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 2px;
+      background: #90caf9;
+      transition: width 0.3s ease;
+    }
+    .contact a:hover::after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <h2 class="logo"><i class="fas fa-code"></i> Jagdesh Kumar</h2>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Hero Section -->
+    <section class="section hero" id="hero">
+      <img src="WhatsApp Image 2025-05-26 at 03.24.05_ca86bc57.jpg" alt="Jagdesh Kumar" />
+      <div class="hero-text">
+        <h1><i class="fas fa-code"></i> Jagdesh Kumar</h1>
+        <h2>Frontend Developer | React Specialist</h2>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+      <p><i class="fas fa-user"></i> A passionate frontend developer from Umerkot, building modern and responsive web applications with React and Tailwind.</p>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills" id="skills">
+      <h3><i class="fas fa-tools"></i> Skills</h3>
+      <div>
+        <span><i class="fab fa-html5"></i> HTML</span>
+        <span><i class="fab fa-css3-alt"></i> CSS</span>
+        <span><i class="fab fa-js-square"></i> JavaScript</span>
+        <span><i class="fab fa-react"></i> React</span>
+        <span><i class="fas fa-wind"></i> Tailwind</span>
+        <span><i class="fab fa-git-alt"></i> Git</span>
+        <span><i class="fab fa-figma"></i> Figma</span>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects" id="projects">
+      <h3><i class="fas fa-folder-open"></i> Projects</h3>
+      <div class="card">
+        <h4><i class="fas fa-laptop-code"></i> Portfolio Website</h4>
+        <div class="links">
+          <a href="#"><i class="fab fa-github"></i> GitHub</a>
+          <a href="#"><i class="fas fa-external-link-alt"></i> Live</a>
+        </div>
+      </div>
+      <div class="card">
+        <h4><i class="fas fa-shopping-cart"></i> E-commerce Store</h4>
+        <div class="links">
+          <a href="#"><i class="fab fa-github"></i> GitHub</a>
+          <a href="#"><i class="fas fa-external-link-alt"></i> Live</a>
+        </div>
+      </div>
+      <div class="card">
+        <h4><i class="fas fa-tasks"></i> Task Manager App</h4>
+        <div class="links">
+          <a href="#"><i class="fab fa-github"></i> GitHub</a>
+          <a href="#"><i class="fas fa-external-link-alt"></i> Live</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+      <h3><i class="fas fa-envelope-open-text"></i> Contact</h3>
+      <p>Feel free to reach out:</p>
+     <div>
+  <a href="mailto:jagdesh961@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+  <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+  <a href="https://linkedin.com/in/yourusername" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+  <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+  <a href="https://www.linkedin.com/in/sanbhwani-jagdesh-489220362/" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+</div>
+
+    </section>
+
+  </div>
+</body>
+</html>
