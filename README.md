@@ -8,4 +8,4 @@ This is a modern responsive portfolio built with HTML, CSS, and JavaScript.
 - Dark mode
 
 ## Live Demo
-[Click Here](https://your-live-link.com)
+[Click Here](https://kumarjagdesh.github.io/my-portfolio/)
